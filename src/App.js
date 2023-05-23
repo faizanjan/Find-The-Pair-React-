@@ -7,22 +7,24 @@ export default function App() {
   let [movesCount, setMovesCount] = useState(0);
   let [timer, setTimer] = useState(0);
   let [level, setLevel] = useState(4);
+  const [intervalInstance, setIntervalInstance] = useState(null);
 
   let incMoves = () => {
     setMovesCount(++movesCount);
   };
-  let intervalInstance;
 
 
-  let startTimer = () => {
-    intervalInstance = setInterval(() => {
-      setTimer(++timer);
-    }, 1000);
+  const startTimer = () => {
+      const instanceId = setInterval(() => {
+        setTimer((prevTimer) => prevTimer + 1);
+      }, 1000);
+      setIntervalInstance(instanceId);
   };
-  
-  let endGame = () => {
-    clearInterval(intervalInstance);
-    document.querySelector('main').innerHTML = `<h1 id="game-won">GAME WON</h1>;`;
+
+  const endGame = () => {
+      clearInterval(intervalInstance);
+      setIntervalInstance(null);
+      document.querySelector('main').innerHTML = `<h1 id="game-won">GAME WON</h1>`;
   };
   
   function startGame() {
