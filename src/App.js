@@ -28,6 +28,7 @@ export default function App() {
   };
   
   function startGame() {
+    // eslint-disable-next-line no-restricted-globals
     if (gameStarted) location.reload();
     setGameStarted(true);
   }
