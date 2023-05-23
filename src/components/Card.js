@@ -1,7 +1,9 @@
-let Card = ()=>{
+import {useEffect} from 'react'
+
+let Card = ({value})=>{
     return(
-        <div className="card">
-            <span className="card-value"></span>
+        <div className="card" id={value}>
+            <span className="card-value">{value}</span>
         </div>
     )
 }
