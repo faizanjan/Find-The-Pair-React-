@@ -84,15 +84,6 @@ main {
   cursor: pointer;
 }
 
-.card-value {
-  display: none;
-}
-
-.active-card .card-value {
-  display: inline;
-  position: absolute;
-}
-
 main h1 {
   align-self: center;
   margin: auto;

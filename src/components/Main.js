@@ -10,32 +10,6 @@ const Main = (props) => {
 
   if (shuffledCards === null) setShuffledCards(getRandomCards());
 
-  useEffect(() => {
-    if (gameStarted === true) {
-      let cards = document.querySelectorAll(".card");
-
-      showAllCards(cards);
-
-      setTimeout(() => {
-        //hide cards after 2 seconds
-        hideAllCards(cards);
-      }, 2000);
-    }
-  }, [gameStarted]);
-
-  let showAllCards = (cards) => {
-    cards.forEach((card) => {
-      card.classList.add("active-card");
-    });
-  };
-
-  let hideAllCards = (cards) => {
-    cards.forEach((card) => {
-      card.classList.remove("active-card");
-      card.style.animation = "flip 0.3s linear";
-    });
-  };
-
   let handleCardClick = (event) => {
     // Checks
     if (
