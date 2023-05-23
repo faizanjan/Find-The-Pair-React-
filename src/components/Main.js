@@ -87,8 +87,8 @@ const Main = (props) => {
         firstCard.getAttribute("id") === element.getAttribute("id") &&
         firstCard !== element // prevent pairing a card with itself
       ) {
-        firstCard.style.background = "green";
-        element.style.background = "green";
+        firstCard.style.background = "none";
+        element.style.background = "none";
         setRemainingPairs(remainingPairs-1);
         if (remainingPairs === 0) endGame();
         setFirstCard(null);
