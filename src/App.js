@@ -24,7 +24,6 @@ export default function App() {
   const stopTimer = () => {
       clearInterval(intervalInstance);
       setIntervalInstance(null);
-      // document.querySelector('main').innerHTML = `<h1 id="game-won">GAME WON</h1>`;
   };
   
   function startGame() {
