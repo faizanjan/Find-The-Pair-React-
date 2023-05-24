@@ -1,66 +1,57 @@
 import Card from "./Card";
 import getRandomCards from "../modules/getRandomCards";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const Main = (props) => {
   let { gameStarted, endGame, incMoves, numPairs } = props;
   let [firstCard, setFirstCard] = useState(null);
   let [remainingPairs, setRemainingPairs] = useState(numPairs - 1);
   let [shuffledCards, setShuffledCards] = useState(null);
+  let [flipFlag, setFlipFlag] = useState(new Array(16).fill(0));
 
   if (shuffledCards === null) setShuffledCards(getRandomCards());
 
-  let handleCardClick = (event) => {
-    // Checks
-    if (
-      !event.target.classList.contains("card") ||
-      event.target.classList.contains("active-card") ||
-      !gameStarted
-    )
-      return;
-
+  let handleCardClick = (key, value) => {
     incMoves();
 
-    let element = event.target;
-    showCard(element);
-
-    if (firstCard === null) setFirstCard(element);
+    if (firstCard === null) setFirstCard([key, value]);
     else {
-      if (
-        firstCard.getAttribute("id") === element.getAttribute("id") &&
-        firstCard !== element // prevent pairing a card with itself
-      ) {
-        firstCard.style.background = "none";
-        element.style.background = "none";
+      if (firstCard[1] === value) {
         setRemainingPairs(remainingPairs - 1);
         if (remainingPairs === 0) endGame();
         setFirstCard(null);
       } else {
         setTimeout(() => {
-          hideCard(firstCard);
-          hideCard(element);
+          hideCard(firstCard[0], key);
           setFirstCard(null);
         }, 500);
       }
     }
   };
 
-  let showCard = (card) => {
-    card.style.animation = "flipBack 0.3s linear";
-    setTimeout(() => {
-      card.classList.add("active-card");
-    }, 200);
-  };
-
-  let hideCard = (card) => {
-    card.classList.remove("active-card");
-    card.style.animation = "flip 0.3s linear";
+  let hideCard = (...args) => {
+    setFlipFlag(
+      flipFlag.map((el, key) => {
+        if (args.includes(key)) return ++el;
+        else return el;
+      })
+    );
   };
 
   return (
-    <main onClick={handleCardClick}>
+    <main>
       {!gameStarted && <h1>PRESS START TO BEGIN</h1>}
-      {gameStarted && shuffledCards.map((value) => <Card value={value} />)}
+      {gameStarted &&
+        shuffledCards.map((value, key) => (
+          <Card
+            key={key}
+            id={key}
+            value={value}
+            gameStarted={gameStarted}
+            handleCardClick={handleCardClick}
+            doFlip={flipFlag[key]}
+          />
+        ))}
     </main>
   );
 };
