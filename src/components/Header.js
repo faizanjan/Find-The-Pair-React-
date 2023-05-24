@@ -18,11 +18,9 @@ function Header(props) {
 
       <div id="timer-and-moves">
         <h3 id="moves">
-          {" "}
           Moves: <span id="moves-count">{movesCount}</span>
         </h3>
         <h3 id="timer">
-          {" "}
           Time: <span id="time">{timer}</span> secs
         </h3>
       </div>
