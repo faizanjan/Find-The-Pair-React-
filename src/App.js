@@ -48,6 +48,7 @@ export default function App() {
         incMoves={incMoves}
         numPairs={level*level/2}
         stopTimer={stopTimer}
+        timer={timer}
       />
     </div>
   );
