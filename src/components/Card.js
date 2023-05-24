@@ -9,10 +9,8 @@ let Card = ({ id, value, gameStarted, handleCardClick, doFlip, paired }) => {
     setTimeout(() => {
         setIsActive(false);
       setFlip(true);
-      console.log("Initial Flip")
       setTimeout(() => {
         setFlip(false);
-      console.log("Initial Flip reset to false")
       }, 350);
     }, 2000);
   }, []);
@@ -20,10 +18,8 @@ let Card = ({ id, value, gameStarted, handleCardClick, doFlip, paired }) => {
   useEffect(() => {
     if (doFlip) {
       setFlip(true);
-      console.log("mismatch Flip")
       setTimeout(() => {
         setFlip(false);
-        console.log("mismatch Flip reset")
     }, 350);
       setIsActive(false);
     }
@@ -32,10 +28,8 @@ let Card = ({ id, value, gameStarted, handleCardClick, doFlip, paired }) => {
   let handleClick = () => {
     if (!isActive && gameStarted) {
       setFlipBack(true);
-      console.log("click Flip")
       setTimeout(() => {
         setFlipBack(false);
-        console.log("click Flip reset")
     }, 350);
     setIsActive(true);
     handleCardClick(id, value);
