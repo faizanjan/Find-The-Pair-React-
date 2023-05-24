@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-let Card = ({ id, value, gameStarted, handleCardClick, doFlip}) => {
+let Card = ({ id, value, gameStarted, handleCardClick, doFlip, paired}) => {
   let [isActive, setIsActive] = useState(true);
   useEffect(() => {
     setTimeout(() => {
@@ -24,7 +24,7 @@ let Card = ({ id, value, gameStarted, handleCardClick, doFlip}) => {
       className="card"
       id={id}
       onClick={handleClick}
-      //   style={{ background: `${isActive ? "none" : ""}` }}
+        style={{ background: `${paired ? "linear-gradient(transparent, rgb(0, 0, 0, 0.3))" : ""}` }}
     >
       {isActive && (
         <span className="card-value" style={{ position: "absolute" }}>

@@ -8,6 +8,7 @@ const Main = (props) => {
   let [remainingPairs, setRemainingPairs] = useState(numPairs - 1);
   let [shuffledCards, setShuffledCards] = useState(null);
   let [flipFlag, setFlipFlag] = useState(new Array(16).fill(0));
+  let [paired, setPaired] = useState(new Array(16).fill(false));
 
   if (shuffledCards === null) setShuffledCards(getRandomCards());
 
@@ -17,6 +18,12 @@ const Main = (props) => {
     if (firstCard === null) setFirstCard([key, value]);
     else {
       if (firstCard[1] === value) {
+        setPaired(
+          paired.map((el, index) => {
+            if (key===index || firstCard[0]===index) return true;
+            else return el;
+          })
+        );
         setRemainingPairs(remainingPairs - 1);
         if (remainingPairs === 0) endGame();
         setFirstCard(null);
@@ -50,6 +57,7 @@ const Main = (props) => {
             gameStarted={gameStarted}
             handleCardClick={handleCardClick}
             doFlip={flipFlag[key]}
+            paired={paired[key]}
           />
         ))}
     </main>
