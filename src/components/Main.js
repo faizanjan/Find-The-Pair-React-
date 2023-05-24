@@ -3,12 +3,13 @@ import getRandomCards from "../modules/getRandomCards";
 import { useState } from "react";
 
 const Main = (props) => {
-  let { gameStarted, endGame, incMoves, numPairs } = props;
+  let { gameStarted, stopTimer, incMoves, numPairs } = props;
   let [firstCard, setFirstCard] = useState(null);
   let [remainingPairs, setRemainingPairs] = useState(numPairs - 1);
   let [shuffledCards, setShuffledCards] = useState(null);
   let [flipFlag, setFlipFlag] = useState(new Array(16).fill(0));
   let [paired, setPaired] = useState(new Array(16).fill(false));
+  let [gameEnded, setGameEnded] = useState(false);
 
   if (shuffledCards === null) setShuffledCards(getRandomCards());
 
@@ -25,7 +26,10 @@ const Main = (props) => {
           })
         );
         setRemainingPairs(remainingPairs - 1);
-        if (remainingPairs === 0) endGame();
+        if (remainingPairs === 0) {
+          stopTimer();
+          setGameEnded(true);
+        }
         setFirstCard(null);
       } else {
         setTimeout(() => {
@@ -48,7 +52,8 @@ const Main = (props) => {
   return (
     <main>
       {!gameStarted && <h1>PRESS START TO BEGIN</h1>}
-      {gameStarted &&
+      {(gameStarted && gameEnded) && <h1 id="game-won">GAME WON</h1>}
+      {(gameStarted && !gameEnded) &&
         shuffledCards.map((value, key) => (
           <Card
             key={key}

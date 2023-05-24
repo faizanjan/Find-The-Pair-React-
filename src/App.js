@@ -21,10 +21,10 @@ export default function App() {
       setIntervalInstance(instanceId);
   };
 
-  const endGame = () => {
+  const stopTimer = () => {
       clearInterval(intervalInstance);
       setIntervalInstance(null);
-      document.querySelector('main').innerHTML = `<h1 id="game-won">GAME WON</h1>`;
+      // document.querySelector('main').innerHTML = `<h1 id="game-won">GAME WON</h1>`;
   };
   
   function startGame() {
@@ -48,7 +48,7 @@ export default function App() {
         intervalInstance={intervalInstance}
         incMoves={incMoves}
         numPairs={level*level/2}
-        endGame={endGame}
+        stopTimer={stopTimer}
       />
     </div>
   );
