@@ -1,13 +1,13 @@
 import Header from "./components/Header";
 import Main from "./components/Main";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export default function App() {
   let [gameStarted, setGameStarted] = useState(false);
   let [movesCount, setMovesCount] = useState(0);
   let [timer, setTimer] = useState(0);
   let [level, setLevel] = useState(4);
-  const [intervalInstance, setIntervalInstance] = useState(null);
+  let intervalInstance = useRef(); 
 
   let incMoves = () => {
     setMovesCount(++movesCount);
@@ -18,12 +18,12 @@ export default function App() {
       const instanceId = setInterval(() => {
         setTimer((prevTimer) => prevTimer + 1);
       }, 1000);
-      setIntervalInstance(instanceId);
+      intervalInstance.current=instanceId;
   };
 
   const stopTimer = () => {
-      clearInterval(intervalInstance);
-      setIntervalInstance(null);
+      clearInterval(intervalInstance.current);
+      intervalInstance.current=null;
   };
   
   function startGame() {
