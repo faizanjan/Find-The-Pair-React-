@@ -6,12 +6,10 @@ const Main = (props) => {
   let { gameStarted, stopTimer, incMoves, numPairs } = props;
   let [firstCard, setFirstCard] = useState(null);
   let [remainingPairs, setRemainingPairs] = useState(numPairs - 1);
-  let [shuffledCards, setShuffledCards] = useState(null);
+  let [shuffledCards, setShuffledCards] = useState(getRandomCards());
   let [flipFlag, setFlipFlag] = useState(new Array(16).fill(0));
   let [paired, setPaired] = useState(new Array(16).fill(false));
   let [gameEnded, setGameEnded] = useState(false);
-
-  if (shuffledCards === null) setShuffledCards(getRandomCards());
 
   let handleCardClick = (key, value) => {
     incMoves();
