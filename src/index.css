@@ -157,4 +157,17 @@ header {
       width:90vw;
       height: 90vw;
     }
+
+    header{
+      width: 90vw;
+    }
+
+    #start{
+      margin: 0;
+      margin-right: 10px;
+    }
+
+    main h1{
+      font-size: 1rem;
+    }
   }
