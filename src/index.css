@@ -151,3 +151,10 @@ header {
       transform: rotateX(360deg) rotateZ(360deg);
     }
   }
+
+  @media screen and (max-width:768px) {
+    main{
+      width:90vw;
+      height: 90vw;
+    }
+  }
