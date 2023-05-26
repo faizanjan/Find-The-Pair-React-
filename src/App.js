@@ -7,25 +7,24 @@ export default function App() {
   let [movesCount, setMovesCount] = useState(0);
   let [timer, setTimer] = useState(0);
   let [level, setLevel] = useState(4);
-  let intervalInstance = useRef(); 
+  let intervalInstance = useRef();
 
   let incMoves = () => {
     setMovesCount(++movesCount);
   };
 
-
   const startTimer = () => {
-      const instanceId = setInterval(() => {
-        setTimer((prevTimer) => prevTimer + 1);
-      }, 1000);
-      intervalInstance.current=instanceId;
+    const instanceId = setInterval(() => {
+      setTimer((prevTimer) => prevTimer + 1);
+    }, 1000);
+    intervalInstance.current = instanceId;
   };
 
   const stopTimer = () => {
-      clearInterval(intervalInstance.current);
-      intervalInstance.current=null;
+    clearInterval(intervalInstance.current);
+    intervalInstance.current = null;
   };
-  
+
   function startGame() {
     // eslint-disable-next-line no-restricted-globals
     if (gameStarted) location.reload();
@@ -46,7 +45,7 @@ export default function App() {
         gameStarted={gameStarted}
         intervalInstance={intervalInstance}
         incMoves={incMoves}
-        numPairs={level*level/2}
+        numPairs={(level * level) / 2}
         stopTimer={stopTimer}
         timer={timer}
       />

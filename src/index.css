@@ -8,7 +8,7 @@
 } */
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -135,39 +135,39 @@ header {
 }
 
 @keyframes flipBack {
-    from {
-      transform: rotateX(180deg) rotateZ(180deg);
-    }
-    25% {
-      transform: rotateX(225deg) rotateZ(225deg);
-    }
-    50% {
-      transform: rotateX(270deg) rotateZ(270deg);
-    }
-    75% {
-      transform: rotateX(315deg) rotateZ(315deg);
-    }
-    100% {
-      transform: rotateX(360deg) rotateZ(360deg);
-    }
+  from {
+    transform: rotateX(180deg) rotateZ(180deg);
+  }
+  25% {
+    transform: rotateX(225deg) rotateZ(225deg);
+  }
+  50% {
+    transform: rotateX(270deg) rotateZ(270deg);
+  }
+  75% {
+    transform: rotateX(315deg) rotateZ(315deg);
+  }
+  100% {
+    transform: rotateX(360deg) rotateZ(360deg);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  main {
+    width: 90vw;
+    height: 90vw;
   }
 
-  @media screen and (max-width:768px) {
-    main{
-      width:90vw;
-      height: 90vw;
-    }
-
-    header{
-      width: 90vw;
-    }
-
-    #start{
-      margin: 0;
-      margin-right: 10px;
-    }
-
-    main h1{
-      font-size: 1rem;
-    }
+  header {
+    width: 90vw;
   }
+
+  #start {
+    margin: 0;
+    margin-right: 10px;
+  }
+
+  main h1 {
+    font-size: 1rem;
+  }
+}

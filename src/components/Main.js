@@ -19,7 +19,7 @@ const Main = (props) => {
       if (firstCard[1] === value) {
         setPaired(
           paired.map((el, index) => {
-            if (key===index || firstCard[0]===index) return true;
+            if (key === index || firstCard[0] === index) return true;
             else return el;
           })
         );
@@ -50,8 +50,11 @@ const Main = (props) => {
   return (
     <main>
       {!gameStarted && <h1>PRESS START TO BEGIN</h1>}
-      {(gameStarted && gameEnded) && <h1 id="game-won">GAME WON in {props.timer} seconds</h1>}
-      {(gameStarted && !gameEnded) &&
+      {gameStarted && gameEnded && (
+        <h1 id="game-won">GAME WON in {props.timer} seconds</h1>
+      )}
+      {gameStarted &&
+        !gameEnded &&
         shuffledCards.map((value, key) => (
           <Card
             key={key}

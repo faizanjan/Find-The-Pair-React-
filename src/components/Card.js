@@ -7,7 +7,7 @@ let Card = ({ id, value, gameStarted, handleCardClick, doFlip, paired }) => {
 
   useEffect(() => {
     setTimeout(() => {
-        setIsActive(false);
+      setIsActive(false);
       setFlip(true);
       setTimeout(() => {
         setFlip(false);
@@ -20,7 +20,7 @@ let Card = ({ id, value, gameStarted, handleCardClick, doFlip, paired }) => {
       setFlip(true);
       setTimeout(() => {
         setFlip(false);
-    }, 350);
+      }, 350);
       setIsActive(false);
     }
   }, [doFlip]);
@@ -30,9 +30,9 @@ let Card = ({ id, value, gameStarted, handleCardClick, doFlip, paired }) => {
       setFlipBack(true);
       setTimeout(() => {
         setFlipBack(false);
-    }, 350);
-    setIsActive(true);
-    handleCardClick(id, value);
+      }, 350);
+      setIsActive(true);
+      handleCardClick(id, value);
     }
   };
 
