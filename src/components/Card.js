@@ -5,33 +5,36 @@ let Card = ({ id, value, onCardClick, doFlip, isPaired }) => {
   let [triggerFlip, setFlip] = useState(false);
   let [triggerFlipBack, setFlipBack] = useState(false);
 
-  useEffect(() => {
-    setTimeout(() => {
+  function displayCard(bool){
+    if(!bool){
       setIsActive(false);
       setFlip(true);
       setTimeout(() => {
         setFlip(false);
       }, 350);
-    }, 2000);
-  }, []);
-
-  useEffect(() => {
-    if (doFlip) {
-      setFlip(true);
-      setTimeout(() => {
-        setFlip(false);
-      }, 350);
-      setIsActive(false);
     }
-  }, [doFlip]);
-
-  let handleClick = () => {
-    if (!isActive) {
+    else{
       setFlipBack(true);
       setTimeout(() => {
         setFlipBack(false);
       }, 350);
       setIsActive(true);
+    }
+  }
+
+  useEffect(() => {
+    setTimeout(() => {
+      displayCard(false)
+    }, 2000);
+  }, []);
+
+  useEffect(() => {
+    if (doFlip) displayCard(false);
+  }, [doFlip]);
+
+  let handleClick = () => {
+    if (!isActive) {
+      displayCard(true);
       onCardClick(id, value);
     }
   };
