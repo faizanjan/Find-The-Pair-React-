@@ -1,32 +1,12 @@
 let getRandomCards = (level) => {
-  // ASSIGNING VALUES
-  const usedInt = [];
-  const assignedCards = [];
-  let cardCount = level*level
-  let cards = new Array(cardCount);
-  let i = 0;
-  while (usedInt.length < cardCount/2) {
-    let randomInt = null;
-    while (randomInt === null || usedInt.includes(randomInt)) {
-      randomInt = Math.floor(Math.random() * cardCount/2) + 1;
-    }
-    usedInt.push(randomInt);
-
-    let randElement1 = null;
-    while (randElement1 === null || assignedCards.includes(randElement1)) {
-      randElement1 = Math.floor(Math.random() * cardCount);
-    }
-    assignedCards.push(randElement1);
-
-    let randElement2 = null;
-    while (randElement2 === null || assignedCards.includes(randElement2)) {
-      randElement2 = Math.floor(Math.random() * cardCount);
-    }
-    assignedCards.push(randElement2);
-    cards[randElement1] = randomInt;
-    cards[randElement2] = randomInt;
-  }
-  return cards;
+  let cardCount = level * level;
+  let cards = new Array(cardCount / 2).fill(0);
+  cards = cards.map((value, key) => key + 1); // can add anything to the cards instead of numbers
+  cards = [...cards, ...cards];
+  return cards
+    .map((value) => ({ value, sort: Math.random() })) // Assign a random sort value to each element
+    .sort((a, b) => a.sort - b.sort) // Sort the array based on the random sort values
+    .map((item) => item.value); // Extract the shuffled values
 };
 
 export default getRandomCards;
