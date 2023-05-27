@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-let Card = ({ id, value, gameStarted, handleCardClick, doFlip, paired }) => {
+let Card = ({ id, value, onCardClick, doFlip, isPaired }) => {
   let [isActive, setIsActive] = useState(true);
   let [triggerFlip, setFlip] = useState(false);
   let [triggerFlipBack, setFlipBack] = useState(false);
@@ -26,13 +26,13 @@ let Card = ({ id, value, gameStarted, handleCardClick, doFlip, paired }) => {
   }, [doFlip]);
 
   let handleClick = () => {
-    if (!isActive && gameStarted) {
+    if (!isActive) {
       setFlipBack(true);
       setTimeout(() => {
         setFlipBack(false);
       }, 350);
       setIsActive(true);
-      handleCardClick(id, value);
+      onCardClick(id, value);
     }
   };
 
@@ -45,7 +45,7 @@ let Card = ({ id, value, gameStarted, handleCardClick, doFlip, paired }) => {
         : "none"
     }`,
     background: `${
-      paired ? "linear-gradient(transparent, rgb(0, 0, 0, 0.3))" : ""
+      isPaired ? "linear-gradient(transparent, rgb(0, 0, 0, 0.3))" : ""
     }`,
   };
 

@@ -3,7 +3,7 @@ import Main from "./components/Main";
 import { useRef, useState } from "react";
 
 export default function App() {
-  let [gameStarted, setGameStarted] = useState(false);
+  let [isGameStarted, setGameStarted] = useState(false);
   let [movesCount, setMovesCount] = useState(0);
   let [timer, setTimer] = useState(0);
   let [level, setLevel] = useState(4);
@@ -27,27 +27,26 @@ export default function App() {
 
   function startGame() {
     // eslint-disable-next-line no-restricted-globals
-    if (gameStarted) location.reload();
+    if (isGameStarted) location.reload();
     setGameStarted(true);
   }
 
   return (
     <div className="App">
       <Header
-        gameStarted={gameStarted}
+        isGameStarted={isGameStarted}
         startGame={startGame}
         startTimer={startTimer}
-        timer={timer}
+        secondsCount={timer}
         movesCount={movesCount}
       />
 
       <Main
-        gameStarted={gameStarted}
-        intervalInstance={intervalInstance}
+        isGameStarted={isGameStarted}
         incMoves={incMoves}
         numPairs={(level * level) / 2}
         stopTimer={stopTimer}
-        timer={timer}
+        secondsCount={timer}
       />
     </div>
   );

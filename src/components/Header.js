@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 function Header(props) {
-  let { gameStarted, startGame, startTimer, timer, movesCount } = props;
+  let { isGameStarted, startGame, startTimer, secondsCount, movesCount } = props;
 
   function triggerStartGame() {
     startGame();
@@ -13,7 +13,7 @@ function Header(props) {
   return (
     <header>
       <button id="start" onClick={triggerStartGame}>
-        {gameStarted ? "RELOAD" : "START"}
+        {isGameStarted ? "RELOAD" : "START"}
       </button>
 
       <div id="timer-and-moves">
@@ -21,7 +21,7 @@ function Header(props) {
           Moves: <span id="moves-count">{movesCount}</span>
         </h3>
         <h3 id="timer">
-          Time: <span id="time">{timer}</span> secs
+          Time: <span id="time">{secondsCount}</span> secs
         </h3>
       </div>
     </header>
