@@ -5,10 +5,10 @@ import { useState } from "react";
 const Main = (props) => {
   let { isGameStarted, stopTimer, incMoves, level, secondsCount } = props;
   let [firstCard, setFirstCard] = useState(null);
-  let [remainingPairsCount, setRemainingPairsCount] = useState((level*level/2) - 1);
-  let [shuffledCards, setShuffledCards] = useState(getRandomCards(level));
-  let [flipFlag, setFlipFlag] = useState(new Array(16).fill(0));
-  let [isPaired, setPaired] = useState(new Array(16).fill(false));
+  let [remainingPairsCount, setRemainingPairsCount] = useState(
+    (level * level) / 2 - 1
+  );
+  let [cardObjects, setCardObjects] = useState(getRandomCards(level));
   let [hasGameEnded, setGameEnded] = useState(false);
 
   let handleCardClick = (key, value) => {
@@ -17,10 +17,14 @@ const Main = (props) => {
     if (firstCard === null) setFirstCard([key, value]);
     else {
       if (firstCard[1] === value) {
-        setPaired(
-          isPaired.map((el, index) => {
-            if (key === index || firstCard[0] === index) return true;
-            else return el;
+        setCardObjects(
+          cardObjects.map((obj, index) => {
+            if (key === index || firstCard[0] === index)
+              return {
+                ...obj,
+                isPaired: true,
+              };
+            else return obj;
           })
         );
         setRemainingPairsCount(remainingPairsCount - 1);
@@ -39,10 +43,14 @@ const Main = (props) => {
   };
 
   let hideCard = (...args) => {
-    setFlipFlag(
-      flipFlag.map((el, key) => {
-        if (args.includes(key)) return ++el;
-        else return el;
+    setCardObjects(
+      cardObjects.map((obj, key) => {
+        if (args.includes(key))
+          return {
+            ...obj,
+            flipFlag: obj.flipFlag + 1,
+          };
+        else return obj;
       })
     );
   };
@@ -55,14 +63,14 @@ const Main = (props) => {
       )}
       {isGameStarted &&
         !hasGameEnded &&
-        shuffledCards.map((card, key) => (
+        cardObjects.map((card, key) => (
           <Card
             key={key} // no other alternative for key
             id={key}
-            value={card}
+            value={card.cardValue}
             onCardClick={handleCardClick}
-            doFlip={flipFlag[key]}
-            isPaired={isPaired[key]}
+            doFlip={card.flipFlag}
+            isPaired={card.isPaired}
           />
         ))}
     </main>
