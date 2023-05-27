@@ -44,7 +44,7 @@ export default function App() {
       <Main
         isGameStarted={isGameStarted}
         incMoves={incMoves}
-        numPairs={(level * level) / 2}
+        level={level}
         stopTimer={stopTimer}
         secondsCount={timer}
       />

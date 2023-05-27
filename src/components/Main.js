@@ -3,10 +3,10 @@ import getRandomCards from "../modules/getRandomCards";
 import { useState } from "react";
 
 const Main = (props) => {
-  let { isGameStarted, stopTimer, incMoves, numPairs, secondsCount } = props;
+  let { isGameStarted, stopTimer, incMoves, level, secondsCount } = props;
   let [firstCard, setFirstCard] = useState(null);
-  let [remainingPairsCount, setRemainingPairsCount] = useState(numPairs - 1);
-  let [shuffledCards, setShuffledCards] = useState(getRandomCards());
+  let [remainingPairsCount, setRemainingPairsCount] = useState((level*level/2) - 1);
+  let [shuffledCards, setShuffledCards] = useState(getRandomCards(level));
   let [flipFlag, setFlipFlag] = useState(new Array(16).fill(0));
   let [isPaired, setPaired] = useState(new Array(16).fill(false));
   let [hasGameEnded, setGameEnded] = useState(false);
